@@ -21,6 +21,13 @@ def delete(task_id):
         tasks.pop(task_id)
     return redirect(url_for('index'))
 
+@app.route('/update/<int:task_id>',methods=['POST'])
+def update(task_id):
+    updated_task=request.form.get('updated_task')
+    if 0<= task_id <len(tasks) and updated_task:
+        tasks [task_id]={"title": updated_task}
+    return redirect(url_for('index'))
+
 
 @app.route('/tasks', methods=['GET'])
 def get_tasks():
